@@ -1,0 +1,15 @@
+/workspaces/InventoryBasics/InventoryBasics/bin/Debug/net10.0/InventoryBasics
+/workspaces/InventoryBasics/InventoryBasics/bin/Debug/net10.0/InventoryBasics.deps.json
+/workspaces/InventoryBasics/InventoryBasics/bin/Debug/net10.0/InventoryBasics.runtimeconfig.json
+/workspaces/InventoryBasics/InventoryBasics/bin/Debug/net10.0/InventoryBasics.dll
+/workspaces/InventoryBasics/InventoryBasics/bin/Debug/net10.0/InventoryBasics.pdb
+/workspaces/InventoryBasics/InventoryBasics/obj/Debug/net10.0/InventoryBasics.GeneratedMSBuildEditorConfig.editorconfig
+/workspaces/InventoryBasics/InventoryBasics/obj/Debug/net10.0/InventoryBasics.AssemblyInfoInputs.cache
+/workspaces/InventoryBasics/InventoryBasics/obj/Debug/net10.0/InventoryBasics.AssemblyInfo.cs
+/workspaces/InventoryBasics/InventoryBasics/obj/Debug/net10.0/InventoryBasics.csproj.CoreCompileInputs.cache
+/workspaces/InventoryBasics/InventoryBasics/obj/Debug/net10.0/InventoryBasics.sourcelink.json
+/workspaces/InventoryBasics/InventoryBasics/obj/Debug/net10.0/InventoryBasics.dll
+/workspaces/InventoryBasics/InventoryBasics/obj/Debug/net10.0/refint/InventoryBasics.dll
+/workspaces/InventoryBasics/InventoryBasics/obj/Debug/net10.0/InventoryBasics.pdb
+/workspaces/InventoryBasics/InventoryBasics/obj/Debug/net10.0/InventoryBasics.genruntimeconfig.cache
+/workspaces/InventoryBasics/InventoryBasics/obj/Debug/net10.0/ref/InventoryBasics.dll
