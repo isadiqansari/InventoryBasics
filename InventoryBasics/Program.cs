@@ -1,12 +1,22 @@
-﻿// 1. Declare our variables
-string productName = "Mechanical Keyboard";
-int stockQuantity = 150;
-decimal price = 89.99m; 
-bool isInStock = true;
+﻿// 1. Prompt the user for the product name
+Console.WriteLine("Enter the new Product name:");
+string productName = Console.ReadLine();
 
-// 2. Calculate the total inventory value
+// 2. Prompt for the stock quantity and convert (parse) it
+Console.WriteLine($"Enter the stock quantity for {productName}");
+string quantityInput = Console.ReadLine();
+int stockQuantity = int.Parse(quantityInput);
+
+// 3. Prompt for the price and convert (parse) it
+Console.WriteLine($"Enter the price of the {productName}");
+string priceInput = Console.ReadLine();
+decimal price = decimal.Parse(priceInput);
+
+// 4. Calculate total value
 decimal totalValue = stockQuantity * price;
 
-// 3. Print the formatted output using String Interpolation
-Console.WriteLine($"Product: {productName} | Price: ${price} | In Stock: {isInStock}");
+// 5. Print the summary
+Console.WriteLine("--- PRODUCT SUMMARY ---");
+Console.WriteLine($"Product: {productName}");
+Console.WriteLine($"Quantity: {stockQuantity}");
 Console.WriteLine($"Total Inventory Value: ${totalValue}");
