@@ -1,38 +1,26 @@
-﻿// 1. Prompt the user for the product name
-Console.WriteLine("Enter the new Product name:");
-string productName = Console.ReadLine();
+﻿Console.WriteLine("===================================");
+Console.WriteLine(" INVENTORY & BUSINESS MANAGER v1.0 ");
+Console.WriteLine("===================================");
+Console.WriteLine("1. Add a New Product");
+Console.WriteLine("2. View Inventory");
+Console.WriteLine("3. Exit Application");
+Console.WriteLine("===================================");
+Console.Write("Enter your choice (1-3): ");
 
-// 2. Prompt for the stock quantity and convert (parse) it
-Console.WriteLine($"Enter the stock quantity for {productName}");
-string quantityInput = Console.ReadLine();
-int stockQuantity = int.Parse(quantityInput);
+string menuChoice = Console.ReadLine();
 
-// 3. Prompt for the price and convert (parse) it
-Console.WriteLine($"Enter the price of the {productName}");
-string priceInput = Console.ReadLine();
-decimal price = decimal.Parse(priceInput);
-
-// 4. Calculate total value
-decimal totalValue = stockQuantity * price;
-
-// 5. Print the summary
-Console.WriteLine("--- PRODUCT SUMMARY ---");
-Console.WriteLine($"Product: {productName}");
-Console.WriteLine($"Quantity: {stockQuantity}");
-Console.WriteLine($"Total Inventory Value: ${totalValue}");
-
-// NEW DECISION LOGIC
-Console.WriteLine("--- STOCK STATUS ---");
-
-if (stockQuantity == 0)
+switch (menuChoice)
 {
-    Console.WriteLine("WARNING: This item is completely OUT OF STOCK!");
-}
-else if (stockQuantity < 10)
-{
-    Console.WriteLine("NOTICE: Low stock level. Consider reordering soon.");
-}
-else
-{
-    Console.WriteLine("STATUS: Stock level is sufficient.");
+    case "1":
+        Console.WriteLine("\n--> You chose to Add a New Product.");
+        break;
+    case "2":
+        Console.WriteLine("\n--> You chose to View Inventory.");
+        break;
+    case "3":
+        Console.WriteLine("\n--> You chose to Exit Application.");
+        break;
+    default:
+        Console.WriteLine("\n--> Invalid choice! Please select 1, 2, or 3.");
+        break;
 }
