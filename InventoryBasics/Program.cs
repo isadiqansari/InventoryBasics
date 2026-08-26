@@ -48,9 +48,17 @@ void AddNewProduct()
     Console.Write($"Enter the price for {productName}: ");
     decimal price = decimal.Parse(Console.ReadLine());
 
-    decimal totalValue = stockQuantity * price;
+    // USING OUR NEW METHOD HERE!
+    // We pass in the quantity and price, and it returns the total.
+    decimal totalValue = CalculateTotalValue(stockQuantity, price);
 
     Console.WriteLine("\n--- SUCCESS ---");
     Console.WriteLine($"Added {stockQuantity}x {productName} @ ${price} each.");
     Console.WriteLine($"Total Value Added: ${totalValue}");
+}
+
+decimal CalculateTotalValue(int quantity, decimal cost)
+{
+    decimal total = quantity * cost;
+    return total;
 }
