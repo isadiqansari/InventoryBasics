@@ -16,7 +16,7 @@ string menuChoice = Console.ReadLine();
 switch (menuChoice)
 {
     case "1":
-        Console.WriteLine("\n--> You chose to Add a New Product.");
+        AddNewProduct();
         break;
     case "2":
         Console.WriteLine("\n--> You chose to View Inventory.");
@@ -31,3 +31,26 @@ switch (menuChoice)
 }
 }
 
+// ==========================================
+// METHODS GO BELOW HERE (AT THE BOTTOM OF THE FILE)
+// ==========================================
+
+void AddNewProduct()
+{
+    Console.WriteLine("\n--- ADD NEW PRODUCT ---");
+
+    Console.Write("Enter the product name: ");
+    string productName = Console.ReadLine();
+
+    Console.Write($"Enter the stock quantity for {productName}: ");
+    int stockQuantity = int.Parse(Console.ReadLine());
+
+    Console.Write($"Enter the price for {productName}: ");
+    decimal price = decimal.Parse(Console.ReadLine());
+
+    decimal totalValue = stockQuantity * price;
+
+    Console.WriteLine("\n--- SUCCESS ---");
+    Console.WriteLine($"Added {stockQuantity}x {productName} @ ${price} each.");
+    Console.WriteLine($"Total Value Added: ${totalValue}");
+}
