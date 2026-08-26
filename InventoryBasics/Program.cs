@@ -1,4 +1,8 @@
-﻿Console.WriteLine("===================================");
+﻿bool isRunning = true;
+
+while (isRunning)
+{
+    Console.WriteLine("===================================");
 Console.WriteLine(" INVENTORY & BUSINESS MANAGER v1.0 ");
 Console.WriteLine("===================================");
 Console.WriteLine("1. Add a New Product");
@@ -19,8 +23,11 @@ switch (menuChoice)
         break;
     case "3":
         Console.WriteLine("\n--> You chose to Exit Application.");
+        isRunning = false;
         break;
     default:
         Console.WriteLine("\n--> Invalid choice! Please select 1, 2, or 3.");
         break;
 }
+}
+
