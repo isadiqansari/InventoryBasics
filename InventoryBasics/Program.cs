@@ -1,4 +1,5 @@
-﻿bool isRunning = true;
+﻿List<string> inventoryList = new List<string>();
+bool isRunning = true;
 
 while (isRunning)
 {
@@ -19,7 +20,11 @@ switch (menuChoice)
         AddNewProduct();
         break;
     case "2":
-        Console.WriteLine("\n--> You chose to View Inventory.");
+        Console.WriteLine("\n--- CURRENT INVENTORY ---");
+        foreach(string item in inventoryList)
+        {
+            Console.WriteLine($"- {item}");
+        }
         break;
     case "3":
         Console.WriteLine("\n--> You chose to Exit Application.");
@@ -41,6 +46,9 @@ void AddNewProduct()
 
     Console.Write("Enter the product name: ");
     string productName = Console.ReadLine();
+    
+    // NEW: Add it to our global inventory list
+    inventoryList.Add(productName);
 
     Console.Write($"Enter the stock quantity for {productName}: ");
     int stockQuantity = int.Parse(Console.ReadLine());
