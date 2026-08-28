@@ -25,7 +25,10 @@ switch (menuChoice)
         Console.WriteLine("\n--- CURRENT INVENTORY ---");
         foreach (Product item in inventoryList)
         {
-            Console.WriteLine($"- {item.Name} | Qty: {item.Quantity} | Price: ${item.Price}");
+            // Calling our new Class Method!
+            decimal totalValue = item.GetTotalInventoryValue();
+
+            Console.WriteLine($"- {item.Name} | Qty: {item.Quantity} | Price: ${item.Price} | Total Value: ${totalValue}");
         }
         break;
     case "3":
@@ -70,13 +73,8 @@ void AddNewProduct()
     // Add the whole object to the List
     inventoryList.Add(newProduct);
 
-    // USING OUR NEW METHOD HERE!
-    // We pass in the quantity and price, and it returns the total.
-    decimal totalValue = CalculateTotalValue(stockQuantity, price);
-
     Console.WriteLine("\n--- SUCCESS ---");
     Console.WriteLine($"Added {stockQuantity}x {productName} @ ${price} each.");
-    Console.WriteLine($"Total Value Added: ${totalValue}");
 }
 
 decimal CalculateTotalValue(int quantity, decimal cost)
@@ -117,5 +115,12 @@ class Product
         {
             Price = price;
         }
+    }
+
+    // THIS GOES INSIDE THE PRODUCT CLASS
+    public decimal GetTotalInventoryValue()
+    {
+        // Notice how it just directly uses its own properties!
+        return Quantity * Price;
     }
 }
