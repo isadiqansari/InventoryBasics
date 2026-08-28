@@ -48,12 +48,13 @@ switch (menuChoice)
 void AddNewProduct()
 {
     Console.WriteLine("\n--- ADD NEW PRODUCT ---");
+    Console.WriteLine("1. Physical Product");
+    Console.WriteLine("2. Digital Product");
+    Console.Write("Choice: ");
+    string? typeChoice = Console.ReadLine();
 
     Console.Write("Enter the product name: ");
     string? productName = Console.ReadLine();
-    
-    // NEW: Add it to our global inventory list
-    // inventoryList.Add(productName);
 
     Console.Write($"Enter the stock quantity for {productName}: ");
     int stockQuantity = int.Parse(Console.ReadLine());
@@ -61,20 +62,24 @@ void AddNewProduct()
     Console.Write($"Enter the price for {productName}: ");
     decimal price = decimal.Parse(Console.ReadLine());
 
-    // Create the object
-    // Product newProduct = new Product();
-    // newProduct.Name = productName;
-    // newProduct.Quantity = stockQuantity;
-    // newProduct.Price = price;
+    if (typeChoice == "2")
+    {
+        // It's a digital product!
+        Console.Write($"Enter the download size in MB: ");
+        double size = double.Parse(Console.ReadLine());
 
-    // Create the object using our new constructor!
-    Product newProduct = new Product(productName, stockQuantity, price);
-    
-    // Add the whole object to the List
-    inventoryList.Add(newProduct);
+        DigitalProduct newDigital = new DigitalProduct(productName, stockQuantity, price, size);
+        inventoryList.Add(newDigital); // We can add this to the list because a DigitalProduct IS-A Product!
 
-    Console.WriteLine("\n--- SUCCESS ---");
-    Console.WriteLine($"Added {stockQuantity}x {productName} @ ${price} each.");
+    }
+    else
+    {
+        // It's a standard physical product
+        Product newProduct = new Product(productName, stockQuantity, price);
+        inventoryList.Add(newProduct);
+    }
+
+    Console.WriteLine("\n---> Product added successfully!");
 }
 
 decimal CalculateTotalValue(int quantity, decimal cost)
@@ -122,5 +127,16 @@ class Product
     {
         // Notice how it just directly uses its own properties!
         return Quantity * Price;
+    }
+}
+
+class DigitalProduct : Product
+{
+    public double DownloadSizeMB { get; set; }
+
+    public DigitalProduct(string name, int quantity, decimal price, double downloadSizeMB)
+        : base(name, quantity, price)
+    {
+        DownloadSizeMB = downloadSizeMB;
     }
 }
