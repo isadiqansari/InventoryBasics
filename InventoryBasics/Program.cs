@@ -95,7 +95,27 @@ class Product
     public Product(string name, int quantity, decimal price)
     {
         Name = name;
-        Quantity = quantity;
-        Price = price;
+
+        // VALIDATe QUANTITY
+        if (quantity < 0)
+        {
+            Console.WriteLine("\n[ERROR] Quantity cannot be negative. Defaulting to 0.");
+            Quantity = 0;
+        }
+        else
+        {
+            Quantity = quantity;
+        }
+        
+        // VALIDATE PRICE
+        if(price < 0)
+        {
+            Console.WriteLine("\n[ERROR] Price cannot be negative. Defaulting to $0.00.");
+            Price = 0m;
+        }
+        else
+        {
+            Price = price;
+        }
     }
 }
