@@ -1,4 +1,6 @@
-﻿List<string> inventoryList = new List<string>();
+﻿// CHANGE THIS: List<string> inventoryList = new List<string>();
+// TO THIS:
+List<Product> inventoryList = new List<Product>();
 bool isRunning = true;
 
 while (isRunning)
@@ -12,7 +14,7 @@ Console.WriteLine("3. Exit Application");
 Console.WriteLine("===================================");
 Console.Write("Enter your choice (1-3): ");
 
-string menuChoice = Console.ReadLine();
+string? menuChoice = Console.ReadLine();
 
 switch (menuChoice)
 {
@@ -21,9 +23,9 @@ switch (menuChoice)
         break;
     case "2":
         Console.WriteLine("\n--- CURRENT INVENTORY ---");
-        foreach(string item in inventoryList)
+        foreach (Product item in inventoryList)
         {
-            Console.WriteLine($"- {item}");
+            Console.WriteLine($"- {item.Name} | Qty: {item.Quantity} | Price: ${item.Price}");
         }
         break;
     case "3":
@@ -45,16 +47,25 @@ void AddNewProduct()
     Console.WriteLine("\n--- ADD NEW PRODUCT ---");
 
     Console.Write("Enter the product name: ");
-    string productName = Console.ReadLine();
+    string? productName = Console.ReadLine();
     
     // NEW: Add it to our global inventory list
-    inventoryList.Add(productName);
+    // inventoryList.Add(productName);
 
     Console.Write($"Enter the stock quantity for {productName}: ");
     int stockQuantity = int.Parse(Console.ReadLine());
 
     Console.Write($"Enter the price for {productName}: ");
     decimal price = decimal.Parse(Console.ReadLine());
+
+    // Create the object
+    Product newProduct = new Product();
+    newProduct.Name = productName;
+    newProduct.Quantity = stockQuantity;
+    newProduct.Price = price;
+    
+    // Add the whole object to the List
+    inventoryList.Add(newProduct);
 
     // USING OUR NEW METHOD HERE!
     // We pass in the quantity and price, and it returns the total.
@@ -69,4 +80,11 @@ decimal CalculateTotalValue(int quantity, decimal cost)
 {
     decimal total = quantity * cost;
     return total;
+}
+
+class Product
+{
+    public string Name { get; set; }
+    public int Quantity { get; set;}
+    public decimal Price { get; set; }
 }
