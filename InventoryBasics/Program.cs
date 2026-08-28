@@ -59,10 +59,13 @@ void AddNewProduct()
     decimal price = decimal.Parse(Console.ReadLine());
 
     // Create the object
-    Product newProduct = new Product();
-    newProduct.Name = productName;
-    newProduct.Quantity = stockQuantity;
-    newProduct.Price = price;
+    // Product newProduct = new Product();
+    // newProduct.Name = productName;
+    // newProduct.Quantity = stockQuantity;
+    // newProduct.Price = price;
+
+    // Create the object using our new constructor!
+    Product newProduct = new Product(productName, stockQuantity, price);
     
     // Add the whole object to the List
     inventoryList.Add(newProduct);
@@ -87,4 +90,12 @@ class Product
     public string Name { get; set; }
     public int Quantity { get; set;}
     public decimal Price { get; set; }
+
+    // THE CONSTRUCTOR
+    public Product(string name, int quantity, decimal price)
+    {
+        Name = name;
+        Quantity = quantity;
+        Price = price;
+    }
 }
