@@ -74,8 +74,13 @@ void AddNewProduct()
     else
     {
         // It's a standard physical product
-        Product newProduct = new Product(productName, stockQuantity, price);
-        inventoryList.Add(newProduct);
+        // THIS is the new part
+        Console.Write($"Enter the weight in Kg: ");
+        double weight = double.Parse(Console.ReadLine());
+        
+        // We use PhysicalProduct now, NOT the abstract Product!
+        PhysicalProduct newPhysical = new PhysicalProduct(productName, stockQuantity, price, weight);
+        inventoryList.Add(newPhysical);
     }
 
     Console.WriteLine("\n---> Product added successfully!");
@@ -87,7 +92,7 @@ decimal CalculateTotalValue(int quantity, decimal cost)
     return total;
 }
 
-class Product
+abstract class Product
 {
     public string Name { get; set; }
     public int Quantity { get; set;}
@@ -132,6 +137,22 @@ class Product
     public virtual string GetDetails()
     {
         return $"- {Name} | Qty: {Quantity} | Price ${Price} | Total: ${GetTotalInventoryValue()}";
+    }
+}
+
+class PhysicalProduct : Product
+{
+    public double WeightInKg { get; set; }
+
+    public PhysicalProduct(string name, int quantity, decimal price, double weightinKg)
+        : base(name, quantity, price)
+    {
+        WeightInKg = weightinKg;
+    }
+
+    public override string GetDetails()
+    {
+        return $"- [PHYSICAL] {Name} | Qty: {Quantity} | Price: ${Price} | Weight: {WeightInKg}kg | Total: ${GetTotalInventoryValue()}";
     }
 }
 
