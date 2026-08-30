@@ -67,7 +67,7 @@ void AddNewProduct()
         Console.Write($"Enter the download size in MB: ");
         double size = double.Parse(Console.ReadLine());
 
-        DigitalProduct newDigital = new DigitalProduct(productName, stockQuantity, price, size);
+        DigitalProduct newDigital = new DigitalProduct(productName, stockQuantity, price, ProductCategory.Software, size);
         inventoryList.Add(newDigital); // We can add this to the list because a DigitalProduct IS-A Product!
 
     }
@@ -79,7 +79,7 @@ void AddNewProduct()
         double weight = double.Parse(Console.ReadLine());
         
         // We use PhysicalProduct now, NOT the abstract Product!
-        PhysicalProduct newPhysical = new PhysicalProduct(productName, stockQuantity, price, weight);
+        PhysicalProduct newPhysical = new PhysicalProduct(productName, stockQuantity, price, ProductCategory.Furniture ,weight);
         inventoryList.Add(newPhysical);
     }
 
@@ -98,10 +98,15 @@ abstract class Product
     public int Quantity { get; set;}
     public decimal Price { get; set; }
 
+    // OUR NEW ENUM PROPERTY
+    public ProductCategory Category { get; set; }
+
     // THE CONSTRUCTOR
-    public Product(string name, int quantity, decimal price)
+    // Update the constructor to require the category
+    public Product(string name, int quantity, decimal price, ProductCategory category)
     {
         Name = name;
+        Category = category;
 
         // VALIDATe QUANTITY
         if (quantity < 0)
@@ -144,8 +149,9 @@ class PhysicalProduct : Product, ITaxable
 {
     public double WeightInKg { get; set; }
 
-    public PhysicalProduct(string name, int quantity, decimal price, double weightinKg)
-        : base(name, quantity, price)
+    // Add ProductCategory to the parameters, and pass it to base()
+    public PhysicalProduct(string name, int quantity, decimal price, ProductCategory category, double weightinKg)
+        : base(name, quantity, price, category)
     {
         WeightInKg = weightinKg;
     }
@@ -170,8 +176,8 @@ class DigitalProduct : Product
 {
     public double DownloadSizeMB { get; set; }
 
-    public DigitalProduct(string name, int quantity, decimal price, double downloadSizeMB)
-        : base(name, quantity, price)
+    public DigitalProduct(string name, int quantity, decimal price, ProductCategory category, double downloadSizeMB)
+        : base(name, quantity, price, category)
     {
         DownloadSizeMB = downloadSizeMB;
     }
@@ -187,4 +193,15 @@ class DigitalProduct : Product
 interface ITaxable
 {
     decimal CalculateTax();
+}
+
+enum ProductCategory
+{
+    Electronics,
+    Clothing,
+    Food,
+    Books,
+    Furniture,
+    Software,
+    Other
 }
