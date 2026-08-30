@@ -140,7 +140,7 @@ abstract class Product
     }
 }
 
-class PhysicalProduct : Product
+class PhysicalProduct : Product, ITaxable
 {
     public double WeightInKg { get; set; }
 
@@ -150,10 +150,20 @@ class PhysicalProduct : Product
         WeightInKg = weightinKg;
     }
 
+    // Fulfilling the ITaxable contract
+    public decimal CalculateTax()
+    {
+        // 10% tax rate based on the base price
+        return Price * 0.10m;
+    }
+
     public override string GetDetails()
     {
-        return $"- [PHYSICAL] {Name} | Qty: {Quantity} | Price: ${Price} | Weight: {WeightInKg}kg | Total: ${GetTotalInventoryValue()}";
+        decimal tax = CalculateTax();
+        decimal finalPrice = Price + tax;
+        return $"- [PHYSICAL] {Name} | Qty: {Quantity} | Base Price: ${Price} | Tax: ${tax} | Weight: {WeightInKg}kg | Total: ${GetTotalInventoryValue()}";
     }
+
 }
 
 class DigitalProduct : Product
@@ -172,4 +182,9 @@ class DigitalProduct : Product
         // Notice we still use the basic properties, but we add our new one!
         return $"- [DIGITAL] {Name} | Qty: {Quantity} | Price: ${Price} | Size: {DownloadSizeMB} MB | Total: ${GetTotalInventoryValue()}";
     }
+}
+
+interface ITaxable
+{
+    decimal CalculateTax();
 }
