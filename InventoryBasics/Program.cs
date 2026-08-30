@@ -55,11 +55,23 @@ void AddNewProduct()
     Console.Write("Enter the product name: ");
     string? productName = Console.ReadLine();
 
+    int stockQuantity = 0;
+    decimal price = 0m;
+
+    // THE SAFETY NET
+    try
+    {
     Console.Write($"Enter the stock quantity for {productName}: ");
-    int stockQuantity = int.Parse(Console.ReadLine());
+    stockQuantity = int.Parse(Console.ReadLine());
 
     Console.Write($"Enter the price for {productName}: ");
-    decimal price = decimal.Parse(Console.ReadLine());
+    price = decimal.Parse(Console.ReadLine());
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine("\n[ERROR] Invalid Input! Please enter standard numbes only.");
+        return; // This immediately exits the AddNewProduct() and goes back to main menu
+    }
 
     if (typeChoice == "2")
     {
