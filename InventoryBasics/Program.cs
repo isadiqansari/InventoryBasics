@@ -1,6 +1,7 @@
 ﻿// CHANGE THIS: List<string> inventoryList = new List<string>();
 // TO THIS:
-List<Product> inventoryList = new List<Product>();
+// Delete the List, use the code below insted: List<Product> inventoryList = new List<Product>();
+Dictionary<string, Product> inventoryMap = new Dictionary<string, Product>();
 bool isRunning = true;
 
 while (isRunning)
@@ -24,18 +25,20 @@ switch (menuChoice)
         break;
     case "2":
         Console.WriteLine("\n--- CURRENT INVENTORY ---");
-        foreach (Product item in inventoryList)
+        foreach (Product item in inventoryMap.Values) // Use .Values to get the Product objects from the dictionary
         {
             //Polymorphism in action! C# automatically figures out
             // if it should call the Product version or the DigitalProduct version
-            Console.WriteLine(item.GetDetails());
+            // Console.WriteLine(item.GetDetails());
+
+            Console.WriteLine($"[SKU: {item.SKU}] {item.GetDetails()}");
         }
         break;
     case "3":
         Console.WriteLine("\n--- LOW STOCK ALERT (Under 5 items) ---");
 
         // USING LINQ TO FILTER THE LIST
-        var lowStockItems = inventoryList.Where(p => p.Quantity < 5).ToList();
+        var lowStockItems = inventoryMap.Values.Where(p => p.Quantity < 5).ToList();
 
         if(lowStockItems.Count == 0)
             {
@@ -71,6 +74,16 @@ void AddNewProduct()
     Console.Write("Choice: ");
     string? typeChoice = Console.ReadLine();
 
+    Console.Write("Enter the unique SKU (e.g., KB-001): ");
+    string? sku = Console.ReadLine();
+
+    // Prevent duplicates before we even ask for the rest of the details!
+    if (inventoryMap.ContainsKey(sku))
+    {
+        Console.WriteLine("[ERROR] That SKU already exists in the system!");
+        return;
+    }
+
     Console.Write("Enter the product name: ");
     string? productName = Console.ReadLine();
 
@@ -98,8 +111,9 @@ void AddNewProduct()
         Console.Write($"Enter the download size in MB: ");
         double size = double.Parse(Console.ReadLine());
 
-        DigitalProduct newDigital = new DigitalProduct(productName, stockQuantity, price, ProductCategory.Software, size);
-        inventoryList.Add(newDigital); // We can add this to the list because a DigitalProduct IS-A Product!
+        DigitalProduct newDigital = new DigitalProduct(sku, productName, stockQuantity, price, ProductCategory.Software, size);
+        // Add to dictionary: The first parameter is the Key, the second is the Object
+        inventoryMap.Add(sku, newDigital); // We can add this to the list because a DigitalProduct IS-A Product!
 
     }
     else
@@ -110,8 +124,9 @@ void AddNewProduct()
         double weight = double.Parse(Console.ReadLine());
         
         // We use PhysicalProduct now, NOT the abstract Product!
-        PhysicalProduct newPhysical = new PhysicalProduct(productName, stockQuantity, price, ProductCategory.Furniture ,weight);
-        inventoryList.Add(newPhysical);
+        PhysicalProduct newPhysical = new PhysicalProduct(sku, productName, stockQuantity, price, ProductCategory.Furniture ,weight);
+        // Add to dictionary: The first parameter is the Key, the second is the Object
+        inventoryMap.Add(sku, newPhysical);
     }
 
     Console.WriteLine("\n---> Product added successfully!");
@@ -125,6 +140,7 @@ decimal CalculateTotalValue(int quantity, decimal cost)
 
 abstract class Product
 {
+    public string SKU { get; set; } // Stock Keeping Unit, a unique identifier for the product
     public string Name { get; set; }
     public int Quantity { get; set;}
     public decimal Price { get; set; }
@@ -134,8 +150,9 @@ abstract class Product
 
     // THE CONSTRUCTOR
     // Update the constructor to require the category
-    public Product(string name, int quantity, decimal price, ProductCategory category)
+    public Product(string sku, string name, int quantity, decimal price, ProductCategory category)
     {
+        SKU = sku;
         Name = name;
         Category = category;
 
@@ -181,8 +198,8 @@ class PhysicalProduct : Product, ITaxable
     public double WeightInKg { get; set; }
 
     // Add ProductCategory to the parameters, and pass it to base()
-    public PhysicalProduct(string name, int quantity, decimal price, ProductCategory category, double weightinKg)
-        : base(name, quantity, price, category)
+    public PhysicalProduct(string sku, string name, int quantity, decimal price, ProductCategory category, double weightinKg)
+        : base(sku, name, quantity, price, category)
     {
         WeightInKg = weightinKg;
     }
@@ -207,8 +224,8 @@ class DigitalProduct : Product
 {
     public double DownloadSizeMB { get; set; }
 
-    public DigitalProduct(string name, int quantity, decimal price, ProductCategory category, double downloadSizeMB)
-        : base(name, quantity, price, category)
+    public DigitalProduct(string sku, string name, int quantity, decimal price, ProductCategory category, double downloadSizeMB)
+        : base(sku, name, quantity, price, category)
     {
         DownloadSizeMB = downloadSizeMB;
     }
