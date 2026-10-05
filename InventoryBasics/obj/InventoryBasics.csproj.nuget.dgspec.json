@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/workspaces/InventoryBasics/InventoryBasics/InventoryBasics.csproj": {}
+    "/home/mohdsadiqansari/connected-repo/InventoryBasics/InventoryBasics.csproj": {}
   },
   "projects": {
-    "/workspaces/InventoryBasics/InventoryBasics/InventoryBasics.csproj": {
+    "/home/mohdsadiqansari/connected-repo/InventoryBasics/InventoryBasics.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/workspaces/InventoryBasics/InventoryBasics/InventoryBasics.csproj",
+        "projectUniqueName": "/home/mohdsadiqansari/connected-repo/InventoryBasics/InventoryBasics.csproj",
         "projectName": "InventoryBasics",
-        "projectPath": "/workspaces/InventoryBasics/InventoryBasics/InventoryBasics.csproj",
-        "packagesPath": "/home/codespace/.nuget/packages/",
-        "outputPath": "/workspaces/InventoryBasics/InventoryBasics/obj/",
+        "projectPath": "/home/mohdsadiqansari/connected-repo/InventoryBasics/InventoryBasics.csproj",
+        "packagesPath": "/home/mohdsadiqansari/.nuget/packages/",
+        "outputPath": "/home/mohdsadiqansari/connected-repo/InventoryBasics/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/codespace/.nuget/NuGet/NuGet.Config"
+          "/home/mohdsadiqansari/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net10.0"
@@ -24,6 +24,7 @@
         },
         "frameworks": {
           "net10.0": {
+            "framework": "net10.0",
             "targetAlias": "net10.0",
             "projectReferences": {}
           }
@@ -38,10 +39,11 @@
           "auditLevel": "low",
           "auditMode": "all"
         },
-        "SdkAnalysisLevel": "10.0.200"
+        "SdkAnalysisLevel": "10.0.400"
       },
       "frameworks": {
         "net10.0": {
+          "framework": "net10.0",
           "targetAlias": "net10.0",
           "imports": [
             "net461",
@@ -59,7 +61,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/10.0.200/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "/home/mohdsadiqansari/.dotnet/sdk/10.0.401/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.CSharp": "(,4.7.32767]",
             "Microsoft.VisualBasic": "(,10.4.32767]",

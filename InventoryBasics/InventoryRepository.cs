@@ -1,6 +1,6 @@
 // Define the class with a generic type parameter <T>.
 // <T> acts as a placeholder for whatever entity type this repository will store (e.g., Product, Customer).
-class InventoryRepository<T>
+class InventoryRepository<T> where T : Product
 {
     // A private internal dictionary that actually holds the data in memory.
     // string: represents the lookup key (like a SKU or an ID).
@@ -11,17 +11,21 @@ class InventoryRepository<T>
     // Method to add an item to storage.
     // Takes a string key and an item of type T.
     // Returns bool: true if added successfully, false if the key already exists.
-    public bool Add(string key, T item)
+
+    // We no longer need to pass 'string key' as a parameter 
+    // if we assume that the Product class has a property that can serve 
+    // as a unique identifier (like SKU or ID). The repo reads item.SKU directly.
+    public bool Add( T item)
     {
         // Guard check: see if this key is already taken in the dictionary.
-        if (_storage.ContainsKey(key))
+        if (_storage.ContainsKey(item.SKU))
         {
             // Exit early and report failure to avoid crashing the program with a duplicate key exception.
             return false;
         }
 
         // Key is unique, so insert the key-value pair into internal storage.
-        _storage.Add(key, item);
+        _storage.Add(item.SKU, item);
 
         // Report that the insertion was successful.
         return true;

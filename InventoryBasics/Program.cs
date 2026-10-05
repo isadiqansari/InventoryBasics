@@ -147,7 +147,8 @@ void AddProduct()
         DigitalProduct newDigital = new DigitalProduct(sku, productName, stockQuantity, price, ProductCategory.Software, size);
 
         // Store the newly created digital product in our generic repository.
-        productRepo.Add(sku, newDigital);
+        // Lesson 24 — Generic Constraints (where T : ...)
+        productRepo.Add(newDigital);
     }
     else
     {
@@ -159,7 +160,7 @@ void AddProduct()
         PhysicalProduct newPhysical = new PhysicalProduct(sku, productName, stockQuantity, price, ProductCategory.Furniture, weight);
 
         // Store the newly created physical product in our generic repository.
-        productRepo.Add(sku, newPhysical);
+        productRepo.Add(newPhysical);
     }
 
     // Confirmation message shown after successful insertion.
