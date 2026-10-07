@@ -63,4 +63,28 @@ class InventoryRepository<T> where T : Product
         // Forwards the call directly to Dictionary's built-in, lightning-fast ContainsKey check.
         return _storage.ContainsKey(key);
     }
+
+    // OCT-7-2026: Remove and item by its key. Returns true if the item was found and removed, false if not.
+    public bool Remove(string key)
+    {
+        return _storage.Remove(key);
+    }
+
+    // OCT-7-2026: Update quantity of a specific item safely. Returns true if the item was found and updated, false if not.
+    public bool UpdateQuantity(string key, int newQuantity)
+    {
+        if (!_storage.ContainsKey(key))
+        {
+            return false;
+        }
+
+        if (newQuantity < 0)
+        {
+            Console.WriteLine("[ERROR] Stock quantity cannot be negative.");
+            return false;
+        }
+
+        _storage[key].Quantity = newQuantity;
+        return true;
+    }
 }

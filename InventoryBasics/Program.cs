@@ -15,9 +15,11 @@ while (isRunning)
     Console.WriteLine("1. Add a New Product");
     Console.WriteLine("2. View All Inventory");
     Console.WriteLine("3. View Low Stock Products");
-    Console.WriteLine("4. Exit Application");
+    Console.WriteLine("4. Update Product Stock Quantity");
+    Console.WriteLine("5. Delete a Product by SKU");
+    Console.WriteLine("6. Exit Application");
     Console.WriteLine("===================================");
-    Console.Write("Enter your choice (1-4): ");
+    Console.Write("Enter your choice (1-6): ");
 
     // Read the user's menu choice from the console as text.
     string menuChoice = Console.ReadLine();
@@ -72,8 +74,15 @@ while (isRunning)
             // Exit the switch statement and return to the main menu.
             break;
 
-        // User picked option 4: Exit.
         case "4":
+            UpdateStock();
+            break;
+        
+        case "5":
+            DeleteProduct();
+            break;
+        // User picked option 6: Exit.
+        case "6":
             Console.WriteLine("\n--> Exiting application. Goodbye!");
             // Setting isRunning to false terminates the while loop on the next evaluation.
             isRunning = false;
@@ -165,4 +174,48 @@ void AddProduct()
 
     // Confirmation message shown after successful insertion.
     Console.WriteLine("\n--> Product added successfully!");
+}
+
+void UpdateStock()
+{
+    Console.WriteLine("\n--- UPDATE PRODUCT STOCK ---");
+    Console.WriteLine("Enter the SKU of the product to update: ");
+    string sku = Console.ReadLine();
+    
+    if(!productRepo.Exists(sku))
+    {
+        Console.WriteLine("[ERROR] Product not found.");
+        return;
+    }
+
+    Console.Write("Enter the new stock quantity: ");
+    if(int.TryParse(Console.ReadLine(), out int newQty))
+    {
+        bool success = productRepo.UpdateQuantity(sku, newQty);
+        if(success)
+        {
+            Console.WriteLine("--> Stock updated successfully!");
+        }
+    }
+    else
+    {
+        Console.WriteLine("[ERROR] Invalid number format.");
+    }
+}
+
+void DeleteProduct()
+{
+    Console.WriteLine("\n--- DELETE PRODUCT ---");
+    Console.WriteLine("Enter the SKU of the product to delete: ");
+    string sku = Console.ReadLine();
+
+    bool removed = productRepo.Remove(sku);
+    if(removed)
+    {
+        Console.WriteLine("--> Product deleted successfully!");
+    }
+    else
+    {
+        Console.WriteLine("[ERROR] Product not found.");
+    }
 }

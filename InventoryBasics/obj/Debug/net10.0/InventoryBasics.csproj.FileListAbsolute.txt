@@ -27,3 +27,17 @@
 /home/mohdsadiqansari/Downloads/InventoryBasics-main/InventoryBasics/obj/Debug/net10.0/InventoryBasics.pdb
 /home/mohdsadiqansari/Downloads/InventoryBasics-main/InventoryBasics/obj/Debug/net10.0/InventoryBasics.genruntimeconfig.cache
 /home/mohdsadiqansari/Downloads/InventoryBasics-main/InventoryBasics/obj/Debug/net10.0/ref/InventoryBasics.dll
+/home/mohdsadiqansari/connected-repo/InventoryBasics/bin/Debug/net10.0/InventoryBasics
+/home/mohdsadiqansari/connected-repo/InventoryBasics/bin/Debug/net10.0/InventoryBasics.deps.json
+/home/mohdsadiqansari/connected-repo/InventoryBasics/bin/Debug/net10.0/InventoryBasics.runtimeconfig.json
+/home/mohdsadiqansari/connected-repo/InventoryBasics/bin/Debug/net10.0/InventoryBasics.dll
+/home/mohdsadiqansari/connected-repo/InventoryBasics/bin/Debug/net10.0/InventoryBasics.pdb
+/home/mohdsadiqansari/connected-repo/InventoryBasics/obj/Debug/net10.0/InventoryBasics.GeneratedMSBuildEditorConfig.editorconfig
+/home/mohdsadiqansari/connected-repo/InventoryBasics/obj/Debug/net10.0/InventoryBasics.AssemblyInfoInputs.cache
+/home/mohdsadiqansari/connected-repo/InventoryBasics/obj/Debug/net10.0/InventoryBasics.AssemblyInfo.cs
+/home/mohdsadiqansari/connected-repo/InventoryBasics/obj/Debug/net10.0/InventoryBasics.csproj.CoreCompileInputs.cache
+/home/mohdsadiqansari/connected-repo/InventoryBasics/obj/Debug/net10.0/InventoryBasics.dll
+/home/mohdsadiqansari/connected-repo/InventoryBasics/obj/Debug/net10.0/refint/InventoryBasics.dll
+/home/mohdsadiqansari/connected-repo/InventoryBasics/obj/Debug/net10.0/InventoryBasics.pdb
+/home/mohdsadiqansari/connected-repo/InventoryBasics/obj/Debug/net10.0/InventoryBasics.genruntimeconfig.cache
+/home/mohdsadiqansari/connected-repo/InventoryBasics/obj/Debug/net10.0/ref/InventoryBasics.dll
