@@ -17,9 +17,10 @@ while (isRunning)
     Console.WriteLine("3. View Low Stock Products");
     Console.WriteLine("4. Update Product Stock Quantity");
     Console.WriteLine("5. Delete a Product by SKU");
-    Console.WriteLine("6. Exit Application");
+    Console.WriteLine("6. Filter by Category");
+    Console.WriteLine("7. Exit Application");
     Console.WriteLine("===================================");
-    Console.Write("Enter your choice (1-6): ");
+    Console.Write("Enter your choice (1-7): ");
 
     // Read the user's menu choice from the console as text.
     string menuChoice = Console.ReadLine();
@@ -55,7 +56,7 @@ while (isRunning)
             Console.WriteLine("\n--- LOW STOCK ALERT (Under 5 items) ---");
 
             // LINQ query: fetch all products from the repo, then filter where Quantity is under 5.
-            var lowStockItems = productRepo.GetAll().Where(p => p.Quantity < 5).ToList();
+            var lowStockItems = productRepo.Find(p => p.Quantity < 5);
 
             // Check if our filtered list is empty.
             if (lowStockItems.Count == 0)
@@ -81,8 +82,37 @@ while (isRunning)
         case "5":
             DeleteProduct();
             break;
-        // User picked option 6: Exit.
+        
         case "6":
+            Console.WriteLine("\n--- FILTER BY CATEGORY ---");
+            Console.WriteLine("0. Electronics | 1. Clothing | 2. Food | 3. Books | 4. Furniture | 5. Software | 6. Other");
+            Console.Write("Enter Category Number (0-6): ");
+            if (int.TryParse(Console.ReadLine(), out int catNum) && Enum.IsDefined(typeof(ProductCategory), catNum))
+            {
+                ProductCategory selectedCategory = (ProductCategory)catNum;
+        
+                var categoryItems = productRepo.Find(p => p.Category == selectedCategory);
+
+                if (categoryItems.Count == 0)
+                {
+                    Console.WriteLine("No items found in this category.");   
+                }
+                else
+                {
+                    foreach (Product item in categoryItems)
+                    {
+                        Console.WriteLine($"[SKU: {item.SKU}] {item.GetDetails()}");
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine("[ERROR] Invalid category selected.");
+            }
+            break;
+
+        // User picked option 7: Exit.
+        case "7":
             Console.WriteLine("\n--> Exiting application. Goodbye!");
             // Setting isRunning to false terminates the while loop on the next evaluation.
             isRunning = false;

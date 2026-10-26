@@ -87,4 +87,10 @@ class InventoryRepository<T> where T : Product
         _storage[key].Quantity = newQuantity;
         return true;
     }
+
+    // Search/filter using any dynamic condition passed via a lambda expression
+    public List<T> Find(Func<T, bool> filter)
+    {
+        return _storage.Values.Where(filter).ToList();
+    }
 }
