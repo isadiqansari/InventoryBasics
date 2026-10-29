@@ -1,6 +1,6 @@
 ﻿// Instantiate our generic repository specifically configured to hold 'Product' objects.
 // 'T' becomes 'Product' throughout the repository instance.
-InventoryRepository<Product> productRepo = new InventoryRepository<Product>();
+IRepository<Product> productRepo = new InventoryRepository<Product>();
 
 // Loop control variable. While true, the application stays open.
 bool isRunning = true;

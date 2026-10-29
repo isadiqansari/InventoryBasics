@@ -1,6 +1,6 @@
 // Define the class with a generic type parameter <T>.
 // <T> acts as a placeholder for whatever entity type this repository will store (e.g., Product, Customer).
-class InventoryRepository<T> where T : Product
+class InventoryRepository<T> : IRepository<T> where T : Product
 {
     // A private internal dictionary that actually holds the data in memory.
     // string: represents the lookup key (like a SKU or an ID).
